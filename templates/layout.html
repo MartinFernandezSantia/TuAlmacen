@@ -9,10 +9,10 @@
     {% endfor %}
 {% endif %}
 
-<nav class="navbar navbar-expand-lg rounded-5 rounded-top-0 p-0 overflow-hidden">
+<nav class="navbar navbar-expand-lg rounded-5 rounded-top-0 p-0 overflow-hidden bg-body fixed-top" id="navbar">
     <div class="container-fluid pe-0 d-flex">
         <a class="ms-2 align-self-start" href="#">
-            <img src="{% static 'img/logo.svg' %}" alt="Bootstrap" width="70">
+            <img src="{% static 'img/logo.svg' %}" alt="TuAlmacen" width="70">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,4 +56,50 @@
     {% block main %}{% endblock %}
 </main>
 
+<footer class="w-100 rounded-5 rounded-bottom-0 mt-5 position-relative" style="height: 100vh; background-color: #2a4560;">
+    <div class="container-fluid d-flex">
+        <div class="ms-5">
+            <img src="{% static 'img/logo_white.svg' %}" alt="TuAlmacen" width="100">
+        </div>
+        <ul class="list-unstyled text-center" style="position: absolute; left: 50%; transform: translateX(-50%); margin-top: 6%;">
+            <li class="m-3 fs-5">
+                <a href="" class="a-unstyled"><strong>Como trabajamos en TuAlmacen</strong></a>
+            </li>
+            <li class="m-3 fs-5">
+                <a href="" class="a-unstyled"><strong>Sobre Nosotros</strong></a>
+            </li>
+            <li class="m-3 fs-5">
+                <a href="" class="a-unstyled"><strong>Preguntas Frecuentes</strong></a>
+            </li>
+            <li class="m-3 fs-5">
+                <a href="" class="a-unstyled"><strong>Terminos y Condiciones</strong></a>
+            </li>
+            <li class="m-3 fs-5 pb-5 border-bottom border-black" style="width: 35vw;">
+                <a href="" class="a-unstyled"><strong>Blog</strong></a>
+            </li>
+            <li class="m-2 h4 text-light">
+                <strong>Atención al Cliente</strong>
+            </li>
+            <li class="text-light">Alguna duda? Contactanos por WhatsApp</li>
+            <li class="m-3 text-success h4">
+                <strong>(0223) 156 969600</strong> <span class="ms-2"><img src="{% static 'img/whatsapp.svg' %}" alt="WhatsApp" width="30"></span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="last" class="justify-content-center d-flex" style="background-color: #23364b; position: absolute; bottom: 0; width: 100%; height: 15%;">
+        <div class="rounded rounded-circle border border-info border-5 d-flex justify-content-center align-items-center" style="background-color: #2a4560; height: 13vh; width: 13vh;margin-top: -4vh;">
+            <img src="{% static 'img/facebook.svg' %}" alt="Facebook" height="25">
+        </div>
+        <div class="rounded rounded-circle border border-info border-5 d-flex justify-content-center align-items-center ms-4" style="background-color: #2a4560; height: 13vh; width: 13vh;margin-top: -4vh;">
+            <img src="{% static 'img/instagram.svg' %}" alt="Instagram" width="25">
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block javascript %}
+
+    {% block moreJS %}{% endblock %}
 {% endblock %}

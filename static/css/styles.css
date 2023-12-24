@@ -1,5 +1,17 @@
-.navbar {
-    box-shadow: 0 4px 4px #808F8F;
+body {
+    padding-top: 7%;
 }
 
+.navbar {
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+
+.a-unstyled {
+    text-decoration: none;
+    color: white;
+}
+
+.a-unstyled:hover {
+    color: #23364b;
+}
 
