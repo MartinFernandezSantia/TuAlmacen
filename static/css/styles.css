@@ -1,5 +1,5 @@
 body {
-    padding-top: 7%;
+    min-width: 100vh;
 }
 
 .navbar {
@@ -15,3 +15,6 @@ body {
     color: #23364b;
 }
 
+.logo-btn:active {
+    opacity: 0.8;
+}

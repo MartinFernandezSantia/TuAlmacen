@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<main class="container-fluid ps-0">
+    <div class="row">
+        <a class="position-absolute ps-5" href="{% url 'homepage' %}">
+            <img src="{% static 'img/logo.svg' %}" alt="TuAlmacen" height="90">
+        </a>
+        <div class="col-6">
+            <img class="pb-3" src="{% static 'img/almacen_login.png' %}" alt="Login Almacen" style="height: 100vh;">
+        </div>
+        <div class="col-6 text-center pt-4">
+            <a href="{% url 'homepage' %}" class="text-decoration-none">
+                <p class="fs-5 text-primary-emphasis m-0"><strong>Ir al inicio</strong></p>
+            </a>
+            <h1 class="h1 fw-bold lh-base" style="color: #2a4560;">Creá tu cuenta <br />Súper facil</h1>
+            <p class="fs-6">Continuar con</p>
+
+            <div class="justify-content-center d-flex" style="width: 100%; height: 15%;">
+                <button class="btn border-0">
+                    <img class="logo-btn" src="{% static 'img/facebook_colored.svg' %}" alt="Facebook" width="75">
+                </button>
+                <button class="btn border-0">
+                    <img class="logo-btn" src="{% static 'img/google_colored.svg' %}" alt="Instagram" width="75">
+                </button>
+            </div>
+
+            <a class="text-decoration-none text-dark border-bottom border-black pb-1" href="#">Crear cuenta</a>
+            <p class="text-body-tertiary mt-3" style="font-size: .75rem;">Al registrarte, aceptas nuestros <strong>Términos y <br />Condiciones y la Política de Privacidad.</strong></p>
+
+            <p class="text-secondary">Iniciar sesión</p>
+            <div class="d-flex justify-content-center">
+                <form class="w-50" action="post">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-pill border-black" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}
