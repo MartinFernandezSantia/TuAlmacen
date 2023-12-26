@@ -18,3 +18,13 @@ body {
 .logo-btn:active {
     opacity: 0.8;
 }
+
+.button-login{
+    width: 90%; 
+    height: 30%; 
+    background-color: #15aa36;
+}
+
+.button-login:hover {
+    background-color: #2a4560 !important;
+}

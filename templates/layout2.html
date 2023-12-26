@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<main class="container-fluid ps-0">
+    <div class="row">
+        <a class="position-absolute ps-5" href="{% url 'homepage' %}">
+            <img src="{% static 'img/logo.svg' %}" alt="TuAlmacen" height="80">
+        </a>
+
+        {% block main %}{% endblock %}
+    </div>
+</main>
+{% endblock %}

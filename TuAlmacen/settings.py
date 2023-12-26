@@ -128,3 +128,17 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTHENTICATION_BACKENDS = [
+    'login.custom_auth_backend.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Messages tags
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "alert-danger",
+    messages.SUCCESS: "alert-success",
+}

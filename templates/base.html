@@ -19,6 +19,11 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    {% if messages %}
+        {% for message in messages %}
+            <div id="msg" class=" {% if message.tags %} {{ message.tags }} {% endif %} rounded-0 text-center w-100 mx-auto alert mb-0">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     {% block body %}{% endblock %}
 
     <!-- Bootstrap 5.3 -->
@@ -31,6 +36,16 @@
     <!-- Slick carousel -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
 
+    {% if messages %}
+    <script>
+                // Remove messages from window after 3 seconds
+        document.addEventListener("DOMContentLoaded",function(){
+            setTimeout(function(){
+                $("#msg").remove();
+            }, 3000)
+        });
+    </script>
+    {% endif %}
     {% block javascript %}{% endblock %}
 </body>
 </html>
