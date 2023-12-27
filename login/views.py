@@ -41,3 +41,7 @@ def login(request):
     params = {}
     params["nombre_sitio"] = "Iniciar sesión"
     return render(request, "login/login.html")
+
+
+def register(request):
+    return render(request, "login/register.html")

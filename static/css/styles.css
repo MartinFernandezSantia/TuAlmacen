@@ -28,3 +28,13 @@ body {
 .button-login:hover {
     background-color: #2a4560 !important;
 }
+
+.button-register{
+    width: 90%; 
+    height: 20%; 
+    background-color: #2a4560;
+}
+
+.button-register:hover {
+    background-color: #15aa36 !important;
+}

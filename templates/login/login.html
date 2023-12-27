@@ -3,9 +3,9 @@
 
 {% block main %}
 <div class="col-6">
-    <img class="pb-3" src="{% static 'img/almacen_login.png' %}" alt="Login Almacen" style="height: 100vh;">
+    <img src="{% static 'img/almacen_login.png' %}" alt="Login Almacen" style="height: 100vh;">
 </div>
-<div class="col-6 text-center pt-5">
+<div class="col-6 text-center my-auto">
     <a href="{% url 'homepage' %}" class="text-decoration-none">
         <p class="fs-5 text-primary-emphasis m-0"><strong>Ir al inicio</strong></p>
     </a>
@@ -21,7 +21,7 @@
         </button>
     </div>
 
-    <a class="text-decoration-none text-dark border-bottom border-black pb-1 fs-5" href="#">Crear cuenta</a>
+    <a class="text-decoration-none text-dark border-bottom border-black pb-1 fs-5" href="{% url 'register' %}">Crear cuenta</a>
     <p class="text-body-tertiary mt-3" style="font-size: .75rem;">Al registrarte, aceptas nuestros <strong>Términos y <br />Condiciones y la Política de Privacidad.</strong></p>
 
     <p class="text-secondary fs-5">Iniciar sesión</p>
