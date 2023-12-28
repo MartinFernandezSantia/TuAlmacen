@@ -38,3 +38,6 @@ body {
 .button-register:hover {
     background-color: #15aa36 !important;
 }
+
+.outline-active-0:focus {
+    outline: none;}

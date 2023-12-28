@@ -25,13 +25,22 @@
                 <input type="email" class="form-control rounded-pill border-black" id="registerEmail" name="registerEmail" placeholder="">
                 <label for="registerEmail">Email</label>
             </div>
-            <div class="input-group mb-3">
-                <button class="rounded-pill border-black w-25 me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+            <div class="d-flex mb-3">
+                <div class="me-2 d-flex w-50" >
+                    <!-- Dropdown -->
+                    <div class="btn-group dropup">
+                        <button id="flag" type="button" disabled class="ps-3 bg-light outline-active-0 rounded-5 rounded-end-0 border-end-0 border-1 border-black">
+                            <img src="{% static 'img/phone_country.svg' %}" alt="International" width="25">
+                        </button>
+                        <button type="button" class="bg-light outline-active-0 border-start-0 border-end-0 border-1 border-black dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" style="max-height: 30vw; overflow-y: auto;" id="Dropdown">
+                            <li><button class="dropdown-item">International</button></li>
+                        </ul>
+                    </div>
+                    <select id="callingCode" name="callingCode" class="form-select outline-active-0 rounded-5 rounded-start-0 border-start-0 border-1 border-black w-75"></select>
+                </div>
                 <div class="form-floating">
                     <input type="text" class="form-control rounded-pill border-black" id="registerPhone" name="registerPhone" placeholder="">
                     <label for="registerPhone">Telefono</label>
@@ -41,4 +50,74 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+    function addDropdownItem(text) {
+        $('#Dropdown').append('<li><button class="dropdown-item">' + text + '</button></li>');
+    }
+    
+    fetch('https://restcountries.com/v3.1/all')
+        .then(response => response.json())
+        .then(data => {
+            const countryNames = data.map(country => country.translations.spa.common);
+            // Sort the country names alphabetically
+            countryNames.sort();
+
+            for (var i=0; i < countryNames.length; i++)
+            {
+                addDropdownItem(countryNames[i]);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+
+    });
+
+</script>
+
+<script>       
+    let countryName = "";
+    $(document).on("click", ".dropdown-item", function(event) {
+        event.preventDefault(); 
+        countryName = $(this).text();
+        fetch(`https://restcountries.com/v3.1/translation/${countryName}`)
+            .then(response => response.json())
+            .then(data => {
+                let flagButton = $("#flag");
+                let flagSVG = data[0].flags.svg;
+
+                let img = $("<img>").attr("src", flagSVG);
+                img.attr("alt", countryName);
+                img.attr("width", 25)
+                flagButton.html(img);
+
+                for (let i = 0; i<data[0].idd.suffixes.length; i++)
+                {
+                    let callingCode = data[0].idd.root + data[0].idd.suffixes[i];
+
+                    if (i === 0){
+                        $("#callingCode").html(`<option selected value= '${callingCode}'>${callingCode}</option>`);
+                    } else {
+                        $("#callingCode").append(`<option value= '${callingCode}'>${callingCode}</option>`);
+                    }
+                }
+
+                $("#callingCode").attr("value", data[0].idd.root + data[0].idd.suffixes[0]);
+        })
+        .catch(error => console.error('Error:', error));
+
+    });
+    
+</script>
+
+<script>
+    // let callingCode = $("#callingCode");
+
+    // $(document).on("change", "#callingCode", function(){
+    //     console.log(countryName);
+    // })
+</script>
 {% endblock %}
