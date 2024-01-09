@@ -2,91 +2,81 @@
 {% load static %}
 
 {% block main %}
-<div class="col-lg-6 col-md-0 d-flex align-items-center">
-    <img class="" src="{% static 'img/almacen_register.png' %}" alt="Register Almacen" style="height: 80vh;">
+<div class="d-none d-md-flex col-md-6 align-items-center">
+    <div id="registerImage" class="left-image"></div>
 </div>
-<div class="col-lg-6 col-md-12 text-center my-auto" id="first-form">
-    <h1 class="h1 fw-bold lh-base" style="color: #2a4560;">Creá tu cuenta</h1>
-    <p class="fs-5 text-primary-emphasis">Ingresá tus datos personales <br />para activar tu cuenta</p>
-    <h3 class="h3 fw-bold lh-base mb-5" style="color: #2a4560;">Datos personales</h3>
-
-    <div class="d-flex justify-content-center">
-        <form action="register" method="post" style="width: 60%;">
-            {% csrf_token %}
-            <div class="form-floating mb-4">
-                <input type="text" class="form-control rounded-pill border-black" id="registerName" name="registerName" placeholder="">
-                <label class="fs-5" for="registerName">Nombre</label>
-            </div>
-            <div class="form-floating mb-4">
-                <input type="text" class="form-control rounded-pill border-black" id="registerSurname" name="registerSurname" placeholder="">
-                <label class="fs-5" for="registerSurname">Apellido</label>
-            </div>
-            <div class="form-floating mb-4">
-                <input type="email" class="form-control rounded-pill border-black" id="registerEmail" name="registerEmail" placeholder="">
-                <label class="fs-5" for="registerEmail">Email</label>
-            </div>
-            <div class="d-flex mb-3">
-                <div class="me-2 d-flex w-50" >
-                    <!-- Dropdown -->
-                    <div class="btn-group dropup">
-<<<<<<< HEAD
-                        <button id="flag" type="button" disabled class="ps-3 bg-white outline-active-0 rounded-5 rounded-end-0 border-end-0 border-1 border-black">
-                            <img src="{% static 'img/phone_country.svg' %}" alt="International" width="25">
-                        </button>
-                        <button type="button" class="bg-white outline-active-0 border-start-0 border-end-0 border-1 border-black dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-=======
-                        <button id="flag" type="button" disabled class="ps-3 bg-light outline-active-0 rounded-5 rounded-end-0 border-end-0 border-1 border-black">
-                            <img src="{% static 'img/phone_country.svg' %}" alt="International" width="25">
-                        </button>
-                        <button type="button" class="bg-light outline-active-0 border-start-0 border-end-0 border-1 border-black dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
->>>>>>> 442c1ab376ecf2724850b52b41b1ace8e77ba812
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu" style="max-height: 30vw; overflow-y: auto;" id="Dropdown">
-                            <li><button class="dropdown-item">International</button></li>
-                        </ul>
+<div class="col-sm-12 col-md-6 d-flex align-items-center" id="first-form">
+    <div class="container text-center d-table">
+        <h1 class="h1 fw-bold lh-base" style="color: #2a4560;">Creá tu cuenta</h1>
+        <p class="fs-6 text-primary-emphasis">Ingresá tus datos personales para<br />activar tu cuenta</p>
+        <h4 class="h4 fw-bold lh-base mb-3" style="color: #2a4560;">Datos personales</h4>
+        <div class="row">
+            <form class="col-sm-12 col-lg-9 mx-auto" action="register" method="post" >
+                {% csrf_token %}
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control rounded-pill border-black" id="registerName" name="registerName" placeholder="">
+                    <label class="fs-5" for="registerName">Nombre</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control rounded-pill border-black" id="registerSurname" name="registerSurname" placeholder="">
+                    <label class="fs-5" for="registerSurname">Apellido</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="email" class="form-control rounded-pill border-black" id="registerEmail" name="registerEmail" placeholder="">
+                    <label class="fs-5" for="registerEmail">Email</label>
+                </div>
+                <div class="mb-3 row flex-nowrap">
+                    <div class="d-flex col-6 col-md-5 pe-0" id="callingCodeSelector">
+                        <div class="btn-group dropup">
+                            <button id="flag" type="button" disabled class="ps-3 bg-white outline-active-0 rounded-5 rounded-end-0 border-end-0 border-1 border-black">
+                                <img src="{% static 'img/phone_country.svg' %}" alt="International" width="25">
+                            </button>
+                            <button type="button" class="bg-white outline-active-0 border-start-0 border-end-0 border-1 border-black dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" style="max-height: 30vw; overflow-y: auto;" id="Dropdown">
+                                <li><button class="dropdown-item">International</button></li>
+                            </ul>
+                        </div>
+                        <select id="callingCode" name="callingCode" class="form-select outline-active-0 rounded-5 rounded-start-0 border-start-0 border-1 border-black w-75 ps-0"></select>
                     </div>
-                    <select id="callingCode" name="callingCode" class="form-select outline-active-0 rounded-5 rounded-start-0 border-start-0 border-1 border-black w-75"></select>
+                    <div class="form-floating col-6 col-md-7">
+                        <input type="text" class="form-control rounded-pill border-black" id="registerPhone" name="registerPhone" placeholder="">
+                        <label class="fs-5 ms-3" for="registerPhone">Telefono</label>
+                    </div>
                 </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control rounded-pill border-black" id="registerPhone" name="registerPhone" placeholder="">
-                    <label class="fs-5" for="registerPhone">Telefono</label>
-                </div>
-            </div>
-            <button id="continue-btn" class="rounded-pill fw-bold button-register text-light border-0 mt-3 w-75" type="submit">Continuar</button>
-        </form>
+                <button id="continue-btn" class="rounded-pill fw-bold button-register text-light border-0 mt-3 fs-5 py-3 w-75" type="submit">Continuar</button>
+            </form>
+        </div>
     </div>
 </div>
-<div class="col-lg-6 col-md-12 text-center my-auto" id="second-form" style="display: none;">
-    <div class="text-primary-emphasis w-50" style="cursor: pointer;" id="goBack"><span><img src="{% static 'img/arrow-left.svg' %}" alt="Volver" width="10"></span> Volver</div>
+<div class="col-sm-12 col-md-6 text-center my-auto p-4 d-none" id="second-form">
+    <div class="text-primary-emphasis w-25 pt-2" style="cursor: pointer;" id="goBack"><span><img src="{% static 'img/arrow-left.svg' %}" alt="Volver" width="10"></span> Volver</div>
     <h1 class="h1 fw-bold lh-base" style="color: #2a4560;">Creá una<br />contraseña</h1>
     <p class="fs-6 text-secondary">Escribí una nueva contraseña para tu<br />usuario</p>
     <h3 class="h3">Datos Personales</h3>
-    <div class="d-flex justify-content-center mt-4">
-        <form action="register" method="post" style="width: 50%;">
+    <div class="row">
+        <form class="col-sm-12 col-lg-9 mx-auto" action="register" method="post" >
             <div class="form-floating mb-4 input-group">
                 <input type="password" class="form-control rounded-pill border-black border-1 z-0" id="registerPassword" name="registerPassword" placeholder="">
                 <label class="fs-5 z-1" for="registerPassword">Contraseña</label>
-                <span class="align-self-center z-2 eye-btn" style="margin-left: -10%; cursor: pointer;"><img src="{% static 'img/eye.svg' %}" alt="Ojo abierto" width="20"></span>
+                <span class="align-self-center z-2 eye-btn"><img src="{% static 'img/eye.svg' %}" alt="Ojo abierto" width="20"></span>
             </div>
             <div class="form-floating mb-4 input-group">
                 <input type="password" class="form-control rounded-pill border-black border-1 z-0" id="registerPassword2" name="registerPassword2" placeholder="">
                 <label class="fs-5 z-1" for="registerPassword2">Repetir contraseña</label>
-                <span class="align-self-center z-2 eye-btn" style="margin-left: -10%; cursor: pointer;"><img src="{% static 'img/eye.svg' %}" alt="Ojo abierto" width="20"></span>
+                <span class="align-self-center z-2 eye-btn"><img src="{% static 'img/eye.svg' %}" alt="Ojo abierto" width="20"></span>
             </div>
             <p class="fs-6 text-secondary">La contraseña debe contener</p>
             <p class="fs-6 text-danger">8 caracteres como mínimo<br />Una letra mayúscula<br />Un número</p>        
-            <button class="rounded-pill fw-bold button-register text-light border-0 mt-3" type="submit">Continuar</button>
+            <button class="rounded-pill fw-bold button-register text-light border-0 mt-3 fs-5 py-3 w-75" type="submit">Continuar</button>
         </form>
     </div>
 </div>
 {% endblock %}
 
-{% block javascript %}
-<<<<<<< HEAD
+{% block moreJS %}
 <!-- Get all caountries names in spanish, order them alphabetically and make them dropdown items -->
-=======
->>>>>>> 442c1ab376ecf2724850b52b41b1ace8e77ba812
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
@@ -149,56 +139,13 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('continue-btn').addEventListener('click', function(e) {
             e.preventDefault();
-            document.getElementById('first-form').style.display = 'none';
-            document.getElementById('second-form').style.display = 'block';
+            document.getElementById('first-form').classList.add("d-none");
+            document.getElementById('second-form').classList.remove("d-none");
         });
 
         document.getElementById('goBack').addEventListener('click', function(e) {
-            document.getElementById('first-form').style.display = 'block';
-            document.getElementById('second-form').style.display = 'none';
-        });
-    });
-</script>
-
-<!-- Handle input's labels so that they shrink when input is being focused on or has text in it -->
-<script>
-    let inputs = $("input");
-
-    for (let i=0; i<inputs.length; i++)
-    {
-        inputs[i].addEventListener("input", handleInput);
-        inputs[i].addEventListener("focus", handleInput);
-        inputs[i].addEventListener("blur", handleInput);
-    }
-
-    function handleInput() {
-        let label = $(`label[for="${this.id}"]`);
-        
-        if ($(this).val().length > 0 || this === document.activeElement) {
-            label.removeClass("fs-5");
-        } else if ($(this).val().length === 0 && this !== document.activeElement) {
-            label.addClass("fs-5");
-        }
-    }
-</script>
-
-<!-- Make password visible -->
-<script>
-    $(document).ready(function() {
-        $(".eye-btn").on("click", function() {
-            let passwordInput = $(this).siblings('input');
-            let eyeImg = $(this).children("img");
-
-            if (passwordInput.attr("type") === "password") {
-                passwordInput.attr('type', 'text');
-                eyeImg.attr("src", "{% static 'img/eye-slash.svg' %}");
-                eyeImg.attr("alt", "Ojo cerrado");
-            }
-            else {
-                passwordInput.attr('type', 'password');
-                eyeImg.attr("src", "{% static 'img/eye.svg' %}");
-                eyeImg.attr("alt", "Ojo abierto");
-            }
+            document.getElementById('first-form').classList.remove("d-none");
+            document.getElementById('second-form').classList.add("d-none");
         });
     });
 </script>

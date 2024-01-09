@@ -2,43 +2,45 @@
 {% load static %}
 
 {% block main %}
-<div class="col-6">
-    <img src="{% static 'img/almacen_login.png' %}" alt="Login Almacen" style="height: 100vh;">
+<div class="d-none d-md-flex col-md-6 align-items-center">
+    <div id="loginImage" class="left-image"></div>
 </div>
-<div class="col-6 text-center my-auto">
-    <a href="{% url 'homepage' %}" class="text-decoration-none">
-        <p class="fs-5 text-primary-emphasis m-0"><strong>Ir al inicio</strong></p>
-    </a>
-    <h1 class="h1 fw-bold lh-base" style="color: #2a4560;">Creá tu cuenta <br />Súper facil</h1>
-    <p class="fs-6">Continuar con</p>
-
-    <div class="justify-content-center d-flex" style="width: 100%; height: 15%;">
-        <button class="btn border-0">
-            <img class="logo-btn" src="{% static 'img/facebook_colored.svg' %}" alt="Facebook" width="75">
-        </button>
-        <button class="btn border-0">
-            <img class="logo-btn" src="{% static 'img/google_colored.svg' %}" alt="Instagram" width="75">
-        </button>
-    </div>
-
-    <a class="text-decoration-none text-dark border-bottom border-black pb-1 fs-5" href="{% url 'register' %}">Crear cuenta</a>
-    <p class="text-body-tertiary mt-3" style="font-size: .75rem;">Al registrarte, aceptas nuestros <strong>Términos y <br />Condiciones y la Política de Privacidad.</strong></p>
-
-    <p class="text-secondary fs-5">Iniciar sesión</p>
-    <div class="d-flex justify-content-center">
-        <form action="login" method="post" style="width: 40%;">
-            {% csrf_token %}
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control rounded-pill border-black" id="loginEmail" name="loginEmail" placeholder="">
-                <label for="loginEmail">Email</label>
+<div class="col-sm-12 col-md-6 d-flex align-items-center">
+    <div class="container text-center d-table">
+        <div class="h-50" id="topLoggin">
+            <a href="{% url 'homepage' %}" class="text-decoration-none">
+                <p class="fs-5 text-primary-emphasis m-0"><strong>Ir al inicio</strong></p>
+            </a>
+            <h1 class="h1 fw-bold lh-base d-inline-flex" style="color: #2a4560;">Creá tu cuenta<br>Súper facil</h1>
+            <p class="fs-6 m-0">Continuar con</p>
+            <div class="justify-content-center d-flex" style="width: 100%; height: 15%;">
+                <button class="btn border-0">
+                    <img class="logo-btn" src="{% static 'img/facebook_colored.svg' %}" alt="Facebook" width="75">
+                </button>
+                <button class="btn border-0">
+                    <img class="logo-btn" src="{% static 'img/google_colored.svg' %}" alt="Instagram" width="75">
+                </button>
             </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control rounded-pill border-black" id="loginPassword" name="loginPassword" placeholder="">
-                <label for="loginPassword">Password</label>
-            </div>
-            <a class="text-decoration-none text-dark border-bottom border-black pb-1" href="#">Olvidé mi contraseña</a><br /><br />
-            <button class="rounded-pill fw-bold button-login text-light border-0" type="submit">Iniciar sesión</button>
-        </form>
+            <a class="text-decoration-none text-dark border-bottom border-black pb-1" href="{% url 'register' %}">Crear cuenta</a>
+            <p class="text-body-tertiary mt-2" style="font-size: .75rem;">Al registrarte, aceptas nuestros <strong>Términos y <br />Condiciones y la Política de Privacidad.</strong></p>
+        </div>
+        <div class="h-50 row" id="bottomLogin">
+            <p class="text-secondary fs-6 col-12">Iniciar sesión</p>
+            <form class="col-sm-12 col-lg-7 mx-auto" action="login" method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-2 h-25">
+                    <input type="text" class="form-control rounded-pill border-black border-1 z-0" id="registerEmail" name="registerEmail" placeholder="">
+                    <label class="fs-5 z-1" for="registerEmail">Email</label>
+                </div>
+                <div class="form-floating mb-2 input-group h-25">
+                    <input type="password" class="form-control rounded-pill border-black border-1 z-0" id="registerPassword" name="registerPassword" placeholder="">
+                    <label class="fs-5 z-1" for="registerPassword">Contraseña</label>
+                    <span class="align-self-center z-2 eye-btn"><img src="{% static 'img/eye.svg' %}" alt="Ojo abierto" width="20"></span>
+                </div>
+                <div class="mb-4"><a class="text-decoration-none text-dark border-bottom border-black pb-1" href="#">Olvidé mi contraseña</a></div>
+                <button class="rounded-pill fw-bold button-login text-light border-0 fs-5 py-3 w-75" type="submit">Iniciar sesión</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

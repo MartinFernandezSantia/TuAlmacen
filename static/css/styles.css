@@ -1,5 +1,5 @@
 body {
-    min-width: 100vh;
+    min-height: 100vh;
 }
 
 .navbar {
@@ -20,21 +20,15 @@ body {
 }
 
 .button-login{
-    width: 90%; 
-    height: 30%; 
-    background-color: #15aa36;
+    background-color: #15aa36 !important;
 }
-
 .button-login:hover {
     background-color: #2a4560 !important;
 }
 
 .button-register{
-    width: 90%; 
-    height: 20%; 
     background-color: #2a4560;
 }
-
 .button-register:hover {
     background-color: #15aa36 !important;
 }
@@ -42,4 +36,53 @@ body {
 .outline-active-0:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+.eye-btn {
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+}
+
+.h1 {
+    font-size: 2.25rem !important;
+}
+
+.left-image {
+    width: 90%; 
+    height: 100%; 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+#loginImage {
+    background-image: url(../img/almacen_login.png); 
+}
+#registerImage {
+    background-image: url(../img/almacen_register.png); 
+}
+
+/* Tablets and down */
+@media (max-width: 769px) {
+}
+/* Small devices */
+@media (max-width: 577px) {
+    #topLoggin {
+        padding-bottom: 1rem;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+        box-shadow: 0 5px 10px lightgray;
+        padding-top: 2.5rem;
+    }
+    .h1 {
+        font-size: x-large !important;
+    }
+    #bottomLogin {
+        padding: 1rem;
+    }
+
+    #first-form, #second-form {
+        padding-top: 4.5rem !important;
+        padding-bottom: .5rem !important;
+    }
 }

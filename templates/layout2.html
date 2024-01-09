@@ -12,3 +12,50 @@
     </div>
 </main>
 {% endblock %}
+
+{% block javascript %}
+<!-- Handle input's labels so that they shrink when input is being focused on or has text in it -->
+<script>
+    let inputs = $("input");
+
+    for (let i=0; i<inputs.length; i++)
+    {
+        inputs[i].addEventListener("input", handleInput);
+        inputs[i].addEventListener("focus", handleInput);
+        inputs[i].addEventListener("blur", handleInput);
+    }
+
+    function handleInput() {
+        let label = $(`label[for="${this.id}"]`);
+        
+        if ($(this).val().length > 0 || this === document.activeElement) {
+            label.removeClass("fs-5");
+        } else if ($(this).val().length === 0 && this !== document.activeElement) {
+            label.addClass("fs-5");
+        }
+    }
+</script>
+
+<!-- Make password visible -->
+<script>
+    $(document).ready(function() {
+        $(".eye-btn").on("click", function() {
+            let passwordInput = $(this).siblings('input');
+            let eyeImg = $(this).children("img");
+
+            if (passwordInput.attr("type") === "password") {
+                passwordInput.attr('type', 'text');
+                eyeImg.attr("src", "{% static 'img/eye-slash.svg' %}");
+                eyeImg.attr("alt", "Ojo cerrado");
+            }
+            else {
+                passwordInput.attr('type', 'password');
+                eyeImg.attr("src", "{% static 'img/eye.svg' %}");
+                eyeImg.attr("alt", "Ojo abierto");
+            }
+        });
+    });
+</script>
+{% block moreJS %}{% endblock %}
+
+{% endblock %}
