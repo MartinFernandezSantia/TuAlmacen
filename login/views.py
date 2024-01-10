@@ -6,14 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import re
 
-# Create your views here.
-
-# def login(request):
-#     if request.method == "POST":
-#         return
-    
-#     return render(request, "login/login.html")
-
 # Decorator to check if user is anonymous
 def is_anonymous(func):
     def check(*args, **kwargs):
@@ -45,40 +37,36 @@ def login(request):
 
 @is_anonymous
 def register(request):
-    # if request.method == "POST":
+    if request.method == "POST":
+        # all_post_values = request.POST
 
-    #     username_ = request.POST.get("registerUsername")
-    #     mail = request.POST.get("registerMail")
-    #     password1 = request.POST.get("registerPassword1")
-    #     password2 = request.POST.get("registerPassword2")
+        # # You can loop through the values
+        # for key, value in all_post_values.items():
+        #     print(f"Field '{key}' has value '{value}'")
+        name = request.POST.get("registerName")
+        surname = request.POST.get("registerSurname")
+        email = request.POST.get("registerEmail")
+        password1 = request.POST.get("registerPassword")
+        password2 = request.POST.get("registerPassword2")
 
-    #     password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" # Needs upper, lower, number and at least 8
-    #     email_pattern = r"^\S+@\S+\.\S+$" # Needs to match email pattern
-    #     username_pattern = "^[a-zA-Z0-9_-]{4,20}$" # Needs to match alphanumeric, _ , and from 4 to 20 char
+        password_pattern = "^(?=.*[A-Z])(?=.*\d).{8,}$" # Needs one upper, one number and at least 8 characters
+        email_pattern = r"^\S+@\S+\.\S+$" # Needs to match email pattern
 
-    #     if User.objects.filter(username=username_).exists() or not re.match(username_pattern, username_):
-    #         messages.error(request, f'"{username_}" ya esta en uso o no cumple los requisitos')
-    #         return HttpResponseRedirect(request.path_info)
+        if User.objects.filter(email=email).exists() or not re.match(email_pattern, email):
+            messages.error(request, f'"{email}" ya esta en uso o no coincide con el formato de un mail.')
+            return HttpResponseRedirect("/")
+        elif not re.match(password_pattern, password1):
+            messages.error(request, "La contraseña ingresada es muy debil o no cumple los requisitos")
+            return HttpResponseRedirect(request.path_info)
+        elif password1 != password2:
+            messages.error(request, "Las contraseñas no coinciden")
+            return HttpResponseRedirect(request.path_info)
 
-    #     if User.objects.filter(email = mail).exists() or not re.match(email_pattern, mail):
-    #         messages.error(request, f'"{mail}" ya esta en uso o no es un mail')
-    #         return HttpResponseRedirect(request.path_info)
-    #     elif not re.match(password_pattern, password1):
-    #         messages.error(request, "La contraseña ingresada es muy debil o no cumple los requisitos")
-    #         return HttpResponseRedirect(request.path_info)
-    #     elif password1 != password2:
-    #         messages.error(request, "Las contraseñas no coinciden")
-    #         return HttpResponseRedirect(request.path_info)
+        User.objects.create_user(first_name=name, email=email, password=password1)
 
-    #     user_ = User.objects.create_user(username=username_, email=mail, password=password1)
+        messages.success(request,"Tu cuenta ha sido exitosamente creada!!")
+        return HttpResponseRedirect('/login')
 
-
-
-    #     messages.success(request,"Tu cuenta ha sido exitosamente creada!!")
-    #     return HttpResponseRedirect('/')
-
-    # params = {}
-    # params["nombre_sitio"] = "Crear una cuenta"
     return render(request, "login/register.html")
 
 @login_required
