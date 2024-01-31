@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     # My apps
     "landing_page.apps.LandingPageConfig",
     "login.apps.LoginConfig",
+    # Third party apps
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [

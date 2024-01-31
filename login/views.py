@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
 import re
+from .models import InfoUser
+from django.http import JsonResponse
 
 # Decorator to check if user is anonymous
 def is_anonymous(func):
@@ -38,34 +40,44 @@ def login(request):
 @is_anonymous
 def register(request):
     if request.method == "POST":
-        # all_post_values = request.POST
 
-        # # You can loop through the values
-        # for key, value in all_post_values.items():
-        #     print(f"Field '{key}' has value '{value}'")
-        name = request.POST.get("registerName")
-        surname = request.POST.get("registerSurname")
-        email = request.POST.get("registerEmail")
-        password1 = request.POST.get("registerPassword")
-        password2 = request.POST.get("registerPassword2")
+        registerName = request.POST.get("registerName")
+        registerSurname = request.POST.get("registerSurname")
+        registerEmail = request.POST.get("registerEmail")
+        registerPassword = request.POST.get("registerPassword")
+        registerPassword2 = request.POST.get("registerPassword2")
+        registerPhone = request.POST.get("registerPhone")
 
+
+        name_pattern = r"^[a-zA-Z0-9@.+_-]{1,150}$" # Regex to comply with Django username requirements
         password_pattern = "^(?=.*[A-Z])(?=.*\d).{8,}$" # Needs one upper, one number and at least 8 characters
         email_pattern = r"^\S+@\S+\.\S+$" # Needs to match email pattern
 
-        if User.objects.filter(email=email).exists() or not re.match(email_pattern, email):
-            messages.error(request, f'"{email}" ya esta en uso o no coincide con el formato de un mail.')
-            return HttpResponseRedirect("/")
-        elif not re.match(password_pattern, password1):
-            messages.error(request, "La contraseña ingresada es muy debil o no cumple los requisitos")
-            return HttpResponseRedirect(request.path_info)
-        elif password1 != password2:
-            messages.error(request, "Las contraseñas no coinciden")
-            return HttpResponseRedirect(request.path_info)
+        if not re.match(name_pattern, registerName):
+            messages.error(request, f'Lo sentimos, pero los nombres de usuario no pueden contener más de 150 caracteres o caracteres especiales fuera de @ - _ . +.')
+            return JsonResponse({"redirect_url": request.path_info})
+        elif User.objects.filter(email=registerEmail).exists() or not re.match(email_pattern, registerEmail):
+            messages.error(request, f'"{registerEmail}" ya esta en uso o no coincide con el formato de un mail.')
+            return JsonResponse({"redirect_url": request.path_info})
+        elif not re.match(password_pattern, registerPassword):
+            messages.error(request, "La contraseña ingresada es muy debil o no cumple los requisitos.")
+            return JsonResponse({"redirect_url": request.path_info})
+        elif registerPassword != registerPassword2:
+            messages.error(request, "Las contraseñas no coinciden.")
+            return JsonResponse({"redirect_url": request.path_info})
+        
+        new_user = User.objects.create_user(
+            username=registerName, 
+            last_name=registerSurname, 
+            email=registerEmail, 
+            password=registerPassword)
 
-        User.objects.create_user(first_name=name, email=email, password=password1)
+        info_user = InfoUser(user=new_user, phone_number=registerPhone)
+        info_user.save()
 
         messages.success(request,"Tu cuenta ha sido exitosamente creada!!")
-        return HttpResponseRedirect('/login')
+        return JsonResponse({"redirect_url": "/login"})
+
 
     return render(request, "login/register.html")
 
