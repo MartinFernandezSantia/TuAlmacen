@@ -1,0 +1,40 @@
+{% extends "layout.html" %} 
+
+
+{% block main %} 
+<div class="container-fluid m-3">
+    <div class="row">
+        <div class="col-7">
+            <h3 class="h3">Hola {{ user.username }}!</h3>
+            <div class="text-center" style="display: grid; gap: .5rem; grid-auto-rows: 12rem; grid-template-columns: repeat(4, 1fr);">
+                <div class="profile-box">
+                    <span class="mb-3"><img class="change-svg-color" src="{% static 'img/account.svg' %}" alt="Mis Datos" width="25"></span>
+                    <p class="h4">Mis Datos</p>
+                </div>
+                <div class="profile-box">
+                    <span class="mb-3"><img class="change-svg-color" src="{% static 'img/tag.svg' %}" alt="Mis cupones" width="25"></span>
+                    <p class="h4">Mis cupones</p>
+                </div>
+                <div class="profile-box">
+                    <span class="mb-3"><img class="change-svg-color" src="{% static 'img/account.svg' %}" alt="Historial de Pedidos" width="25"></span>
+                    <p class="h4">Historial de Pedidos</p>
+                </div>
+                <div class="profile-box">
+                    <span class="mb-3"><img class="change-svg-color" src="{% static 'img/account.svg' %}" alt="Mis Direcciones" width="25"></span>
+                    <p class="h4">Mis Direcciones</p>
+                </div>
+                <div class="profile-box">
+                    <span class="mb-3"><img class="change-svg-color" src="{% static 'img/cart.svg' %}" alt="Mis Productos" width="25"></span>
+                    <p class="h4">Mis Productos</p>
+                </div>
+                <div class="profile-box">
+                    <span class="mb-3"><img class="change-svg-color" src="{% static 'img/cart2.svg' %}" alt="Carritos Guardados" width="25"></span>
+                    <p class="h4">Carritos Guardados</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-5"></div>
+    </div>
+</div>
+
+{% endblock%}

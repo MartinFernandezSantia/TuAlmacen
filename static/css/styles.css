@@ -86,3 +86,25 @@ body {
         padding-bottom: .5rem !important;
     }
 }
+
+.profile-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f0f0f0;
+    border-radius: 10%;
+
+    padding: .5rem;
+}
+
+.profile-box:hover{
+    cursor: pointer;
+    color: white;
+    background-color: #2a4560;
+}
+
+.change-svg-color {
+    fill: green !important;
+}
